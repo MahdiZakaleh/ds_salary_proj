@@ -5,7 +5,6 @@ import pandas as pd
 import streamlit as st
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
-# مقدار پیش‌فرض وقتی کاربر متن آگهی رو نمی‌ده (بهتره میانه‌ی desc_len از داده‌ی خودت باشه)
 DEFAULT_DESC_LEN = 3000
 
 CATEGORICAL = [
@@ -18,7 +17,6 @@ CATEGORICAL = [
     "seniority",
 ]
 
-# ستون مهارت -> کلمه‌ای که توی متن آگهی دنبالش می‌گردیم
 SKILL_KEYWORDS = {
     "python_yn": "python",
     "spark": "spark",
@@ -37,7 +35,6 @@ def load_artifacts():
 
 
 def options_for(prefix, columns):
-    """گزینه‌های یک dropdown رو از اسم ستون‌های مدل درمیاره: {برچسب نمایشی: اسم ستون}"""
     options = {}
     for col in columns:
         if col.startswith(prefix + "_"):
@@ -47,7 +44,6 @@ def options_for(prefix, columns):
 
 
 def build_features(columns, numeric, selected_columns):
-    """یک ردیف با همه‌ی ستون‌های مدل می‌سازه؛ پیش‌فرض ۰ و ستون‌های انتخاب‌شده ۱"""
     row = dict.fromkeys(columns, 0)
     row.update(numeric)
     for col in selected_columns:
